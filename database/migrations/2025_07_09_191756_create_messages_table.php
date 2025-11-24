@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->string('message');
-            $table->unsignedBigInteger('reciever_id');
             $table->unsignedBigInteger('sender_id');
-            $table->foreign('reciever_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('reciever_id');
             $table->foreign('sender_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('reciever_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('d_sender')->nullable();
+            $table->unsignedBigInteger('d_reciever')->nullabl();
             $table->timestamps();
         });
     }
